@@ -1,6 +1,6 @@
 # Google Forms JSON exporter
 
-A small Google Apps Script file to export a form into a JSON file. This form JSON object can then be used to build tools to collect form responses though other clients than the web interface.
+A small Google Apps Script file to export a form into a JSON file. This form JSON object can then be used to build tools to collect form responses though other clients than the web interface. Upon execution, permissions will be required to pull the form and to store the generated file in your GD account.
 
 ### Installation
 
