@@ -2,6 +2,9 @@
 // Humanitas Labs
 // 13 October, 2016.
 
+// Google Drive json generation by
+// Josue Marin
+// April 8th, 2024
 
 // Sample URL. Note that this must be authenticated with the current user.
 var URL = "<your-form-editing-url-here>";
@@ -9,8 +12,8 @@ var URL = "<your-form-editing-url-here>";
 /**
  * Converts the given form URL into a JSON object.
  */
-function main() {
 
+function main() {
   var form = FormApp.openByUrl(URL);
   var items = form.getItems();
   
@@ -20,8 +23,14 @@ function main() {
     "count": items.length
   };
   
-  Logger.log(JSON.stringify(result));
+  var jsonString = JSON.stringify(result);
+  var fileId = createJSONFile(jsonString, "Form_Data.json");
+  var file = DriveApp.getFileById(fileId);
+  
+  Logger.log("JSON file created: " + file.getName());
+  Logger.log("Download link: " + file.getDownloadUrl());
 }
+
 
 /**
  * Returns the form metadata object for the given Form object.
@@ -68,8 +77,8 @@ function itemToObject(item) {
     if (["image", "choices", "type", "alignment"].indexOf(propName) != -1) {return};
     
     // Skip feedback-related keys
-    if ("getFeedbackForIncorrect".equals(getKey) || "getFeedbackForCorrect".equals(getKey)
-      || "getGeneralFeedback".equals(getKey)) {return};
+    if ("getFeedbackForIncorrect" === getKey || "getFeedbackForCorrect" === getKey
+      || "getGeneralFeedback" === getKey) {return};
     
     var propValue = typedItem[getKey]();
     
@@ -140,4 +149,16 @@ function itemToObject(item) {
  */
 function snakeCaseToCamelCase(s) {
   return s.toLowerCase().replace(/(\_\w)/g, function(m) {return m[1].toUpperCase();});
+}
+
+/**
+ * Creates a JSON file in Google Drive with the given content.
+ * @param content: string - The content to be written to the file.
+ * @param fileName: string - The name of the file to be created.
+ * @returns The ID of the created file.
+ */
+function createJSONFile(content, fileName) {
+  var blob = Utilities.newBlob(content, 'application/json', fileName);
+  var file = DriveApp.createFile(blob);
+  return file.getId();
 }
