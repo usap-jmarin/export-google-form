@@ -17,7 +17,7 @@ Then you are good to go!
 
 ### Example output
 
-This example output is for [this form](https://docs.google.com/forms/d/e/1FAIpQLScPzx56zhMgV_iTxrm7F6O7-uFhqKYnuP2lda1OeL_ohAQsmw/viewform).
+This example output is for [this form](https://docs.google.com/forms/d/e/1FAIpQLScPzx56zhMgV_iTxrm7F6O7-uFhqKYnuP2lda1OeL_ohAQsmw/viewform) and the previous version of this code.
 
 ```json
 {  
@@ -170,4 +170,10 @@ This example output is for [this form](https://docs.google.com/forms/d/e/1FAIpQL
    ],
    "count":13
 }
+```
+
+The newest version of this code will output the following messages during the execution log:
+```json
+Info:   JSON file created: Form_Data.json
+Download link: https://drive.google.com/uc?id=<your_file_id>&export=download
 ```
