@@ -173,7 +173,7 @@ This example output is for [this form](https://docs.google.com/forms/d/e/1FAIpQL
 ```
 
 The newest version of this code will output the following messages during the execution log:
-```json
+```
 Info:   JSON file created: Form_Data.json
 Download link: https://drive.google.com/uc?id=<your_file_id>&export=download
 ```
